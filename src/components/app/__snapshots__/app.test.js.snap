@@ -16,6 +16,7 @@ exports[`Welcome screen is rendered correctly after relaunch 1`] = `
   </div>
   <button
     className="welcome__button"
+    onClick={[Function]}
   >
     <span
       className="visually-hidden"
