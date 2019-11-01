@@ -1,6 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const GuessArtist = () => {
+const GuessArtist = ({question, onAnswer}) => {
+  const {answers} = question;
   return <section className="game game--artist">
     <header className="game__header">
       <a className="game__back" href="#">
@@ -36,34 +38,34 @@ const GuessArtist = () => {
         </div>
       </div>
 
-      <form className="game__artist">
-        <div className="artist">
-          <input className="artist__input visually-hidden" type="radio" name="answer" value="artist-1" id="answer-1"/>
-          <label className="artist__name" htmlFor="answer-1">
-            <img className="artist__picture" src="http://placehold.it/134x134" alt="Пелагея"/>
-            Пелагея
-          </label>
-        </div>
-
-        <div className="artist">
-          <input className="artist__input visually-hidden" type="radio" name="answer" value="artist-2" id="answer-2"/>
-          <label className="artist__name" htmlFor="answer-2">
-            <img className="artist__picture" src="http://placehold.it/134x134" alt="Пелагея"/>
-            Краснознаменная дивизия имени моей бабушки
-          </label>
-        </div>
-
-        <div className="artist">
-          <input className="artist__input visually-hidden" type="radio" name="answer" value="artist-3" id="answer-3"/>
-          <label className="artist__name" htmlFor="answer-3">
-            <img className="artist__picture" src="http://placehold.it/134x134" alt="Пелагея"/>
-            Lorde
-          </label>
-        </div>
+      <form className="game__artist" onSubmit={(evt) => {
+        evt.preventDefault();
+        onAnswer();
+      }}>
+        {answers.map((it, i) => {
+          return (
+            <div key={`answer-${i}`} className="artist">
+              <input className="artist__input visually-hidden" type="radio" name="answer" value={`answer-${i}`} id={`answer-${i}`}/>
+              <label className="artist__name" htmlFor={`answer-${i}`}>
+                <img className="artist__picture" src={it.picture} alt={it.artist}/>
+                {it.artist}
+              </label>
+            </div>
+          );
+        })}
       </form>
     </section>
   </section>;
 };
+
+GuessArtist.propTypes = {
+  question: PropTypes.shape({
+    answers: PropTypes.array.isRequired,
+    song: PropTypes.object.isRequired
+  }),
+  onAnswer: PropTypes.func.isRequired
+};
+
 
 export default GuessArtist;
 
