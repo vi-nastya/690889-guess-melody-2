@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const GuessArtist = ({question, onAnswer}) => {
+const GuessArtist = ({screenIndex, question, onAnswer}) => {
   const {answers} = question;
   return <section className="game game--artist">
     <header className="game__header">
@@ -44,7 +44,7 @@ const GuessArtist = ({question, onAnswer}) => {
       }}>
         {answers.map((it, i) => {
           return (
-            <div key={`answer-${i}`} className="artist">
+            <div key={`answer-${screenIndex}-${i}`} className="artist">
               <input className="artist__input visually-hidden" type="radio" name="answer" value={`answer-${i}`} id={`answer-${i}`}/>
               <label className="artist__name" htmlFor={`answer-${i}`}>
                 <img className="artist__picture" src={it.picture} alt={it.artist}/>
@@ -59,6 +59,7 @@ const GuessArtist = ({question, onAnswer}) => {
 };
 
 GuessArtist.propTypes = {
+  screenIndex: PropTypes.number.isRequired,
   question: PropTypes.shape({
     answers: PropTypes.array.isRequired,
     song: PropTypes.object.isRequired

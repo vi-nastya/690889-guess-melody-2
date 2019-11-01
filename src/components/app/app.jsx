@@ -3,6 +3,33 @@ import PropTypes from "prop-types";
 import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
 
 export default class App extends PureComponent {
+  statis getScreen(question, props, onUserAnswer) {
+    if (question === -1) {
+      const {time, numErrors} = props;
+
+      return <WelcomeScreen time={time} numErrors={numErrors} onStartButtonClick={onUserAnswer}/>;
+    }
+
+    const {questions} = props;
+    const currentQuestion = questions[question];
+
+    switch (currentQuestion.type) {
+      case `genre`: return <GenreQuestionScreen
+      screenIndex={question}
+      question={currentQuestion}
+      onAnswer={onUserAnswer}
+      />;
+
+      case `artist`: return <ArtistQuestionScreen
+      screenIndex={question}
+      question={currentQuestion}
+      onAnswer={onUserAnswer}
+      />;
+    }
+
+    return null;
+  }
+
   constructor(props) {
     super(props);
 
@@ -12,27 +39,24 @@ export default class App extends PureComponent {
   }
 
   render() {
-    const {time, numErrors} = this.props;
+    const {
+      gameTime,
+      errorCount,
+      questions,
+    } = this.props;
 
-    return <WelcomeScreen time={time} numErrors={numErrors} onStartButtonClick={() => {
-      this.setState(
-          (prevState) =>
-            ({question: prevState.question + 1})
-      );
-    }
-    }
-    />;
-  }
+    const {question} = this.state;
 
-  statis getScreen(question, props, onUserAnswer) {
-    if (question === -1) {
-      const {time, numErrors} = props;
+    return App.getScreen(question, this.props, () => {
+      this.setState((prevState) => {
+        const nextIndex = prevState.question + 1;
+        const isEnd = nextIndex >= questions.length;
 
-      return <WelcomeScreen time={time} numErrors={numErrors} onStartButtonClick={onUserAnswer}/>;
-    }
-
-    const {questions} = props;
-    return <div>Играем</div>;
+        return {
+          question: !isEnd ? nextIndex : -1,
+        };
+      });
+    });
   }
 }
 

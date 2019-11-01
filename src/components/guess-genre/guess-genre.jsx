@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const GuessGenre = ({question, onAnswer}) => {
+const GuessGenre = ({screenIndex, question, onAnswer}) => {
   const {answers, genre} = question;
   return (
     <section className="game game--genre">
@@ -36,7 +36,7 @@ const GuessGenre = ({question, onAnswer}) => {
         }}>
           {answers.map((it, i) => {
             return (
-              <div key={`answer-${i}`} className="track">
+              <div key={`answer-${screenIndex}-${i}`} className="track">
                 <button className="track__button track__button--play" type="button" />
                 <div className="track__status">
                   <audio />
@@ -57,6 +57,7 @@ const GuessGenre = ({question, onAnswer}) => {
 };
 
 GuessGenre.propTypes = {
+  screenIndex: PropTypes.number.isRequired,
   question: PropTypes.shape({
     answers: PropTypes.array.isRequired,
     genre: PropTypes.string.isRequired
