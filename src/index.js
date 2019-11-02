@@ -1,15 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from './components/app/app.jsx';
+import {questions} from './mocks/questions';
+import {gameSettings} from './mocks/game-settings';
 
 const init = () => {
-  const params = {
-    time: 10,
-    numErrors: 3,
-  };
-
   ReactDOM.render(
-      <App time={params.time} numErrors={params.numErrors}/>,
+      <App time={gameSettings.time} numErrors={gameSettings.numErrors} questions={questions}/>,
       document.getElementById(`root`)
   );
 };
