@@ -11,11 +11,11 @@ const GuessArtist = ({screenIndex, question, onAnswer}) => {
       </a>
 
       <svg xmlns="http://www.w3.org/2000/svg" className="timer" viewBox="0 0 780 780">
-        <circle className="timer__line" cx="390" cy="390" r="370" style={ Object({
+        <circle className="timer__line" cx="390" cy="390" r="370" style={{
           filter: `url(#blur)`,
           transform: `rotate(-90deg) scaleY(-1)`,
           transformOrigin: `center`,
-        })} />
+        }} />
       </svg>
 
       <div className="timer__value" xmlns="http://www.w3.org/1999/xhtml">

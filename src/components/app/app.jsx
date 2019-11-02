@@ -34,7 +34,6 @@ export default class App extends PureComponent {
 
   constructor(props) {
     super(props);
-    console.log(`APP PROPS`, this.props);
     this.state = {
       question: -1,
     };
