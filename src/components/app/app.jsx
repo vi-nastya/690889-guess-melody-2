@@ -1,9 +1,11 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
+import GuessArtist from '../guess-artist/guess-artist.jsx';
+import GuessGenre from '../guess-genre/guess-genre.jsx';
 
 export default class App extends PureComponent {
-  statis getScreen(question, props, onUserAnswer) {
+  static getScreen(question, props, onUserAnswer) {
     if (question === -1) {
       const {time, numErrors} = props;
 
@@ -14,16 +16,16 @@ export default class App extends PureComponent {
     const currentQuestion = questions[question];
 
     switch (currentQuestion.type) {
-      case `genre`: return <GenreQuestionScreen
-      screenIndex={question}
-      question={currentQuestion}
-      onAnswer={onUserAnswer}
+      case `genre`: return <GuessGenre
+        screenIndex={question}
+        question={currentQuestion}
+        onAnswer={onUserAnswer}
       />;
 
-      case `artist`: return <ArtistQuestionScreen
-      screenIndex={question}
-      question={currentQuestion}
-      onAnswer={onUserAnswer}
+      case `artist`: return <GuessArtist
+        screenIndex={question}
+        question={currentQuestion}
+        onAnswer={onUserAnswer}
       />;
     }
 
@@ -32,7 +34,7 @@ export default class App extends PureComponent {
 
   constructor(props) {
     super(props);
-
+    console.log(`APP PROPS`, this.props);
     this.state = {
       question: -1,
     };
@@ -40,9 +42,7 @@ export default class App extends PureComponent {
 
   render() {
     const {
-      gameTime,
-      errorCount,
-      questions,
+      questions
     } = this.props;
 
     const {question} = this.state;
@@ -63,5 +63,6 @@ export default class App extends PureComponent {
 App.propTypes = {
   time: PropTypes.number.isRequired,
   numErrors: PropTypes.number.isRequired,
+  questions: PropTypes.array.isRequired,
 };
 

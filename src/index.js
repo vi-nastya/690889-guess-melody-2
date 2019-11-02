@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from './components/app/app.jsx';
+import {questions} from './mocks/questions';
 
 const init = () => {
   const params = {
@@ -9,7 +10,7 @@ const init = () => {
   };
 
   ReactDOM.render(
-      <App time={params.time} numErrors={params.numErrors}/>,
+      <App time={params.time} numErrors={params.numErrors} questions={questions}/>,
       document.getElementById(`root`)
   );
 };

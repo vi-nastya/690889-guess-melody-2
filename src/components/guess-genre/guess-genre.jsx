@@ -12,7 +12,11 @@ const GuessGenre = ({screenIndex, question, onAnswer}) => {
         </a>
 
         <svg xmlns="http://www.w3.org/2000/svg" className="timer" viewBox="0 0 780 780">
-          <circle className="timer__line" cx="390" cy="390" r="370" style="filter: url(#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center"/>
+          <circle className="timer__line" cx="390" cy="390" r="370" style={ Object({
+            filter: `url(#blur)`,
+            transform: `rotate(-90deg) scaleY(-1)`,
+            transformOrigin: `center`,
+          })} />
         </svg>
 
         <div className="timer__value" xmlns="http://www.w3.org/1999/xhtml">
@@ -28,7 +32,7 @@ const GuessGenre = ({screenIndex, question, onAnswer}) => {
         </div>
       </header>
 
-      <section cclassNamelass="game__screen">
+      <section className="game__screen">
         <h2 className="game__title">Выберите {genre} треки</h2>
         <form className="game__tracks" onSubmit={(evt) => {
           evt.preventDefault();
