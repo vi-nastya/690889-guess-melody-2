@@ -34,9 +34,11 @@ const GuessGenre = ({screenIndex, question, onAnswer}) => {
 
       <section className="game__screen">
         <h2 className="game__title">Выберите {genre} треки</h2>
-        <form className="game__tracks" onSubmit={(evt) => {
-          evt.preventDefault();
-          onAnswer();
+        <form className="game__tracks" onSubmit={() => {
+          // get checked checkboxes
+          const checkedAnswers = document.querySelectorAll(`input[name=answer]:checked`);
+          const userAnswers = Array.from(checkedAnswers).map((checkbox) => parseInt(checkbox.value.split(`-`)[1], 10));
+          onAnswer(userAnswers);
         }}>
           {answers.map((it, i) => {
             return (

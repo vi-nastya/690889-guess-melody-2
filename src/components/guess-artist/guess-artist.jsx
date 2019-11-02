@@ -42,17 +42,14 @@ const GuessArtist = ({screenIndex, question, onAnswer}) => {
         </div>
       </div>
 
-      <form className="game__artist" onSubmit={(evt) => {
-        evt.preventDefault();
-        onAnswer();
-      }}>
-        {answers.map((it, i) => {
+      <form className="game__artist">
+        {answers.map(({picture, artist}, i) => {
           return (
-            <div key={`answer-${screenIndex}-${i}`} className="artist">
+            <div key={`answer-${screenIndex}-${i}`} className="artist" onClick={() => onAnswer(artist)}>
               <input className="artist__input visually-hidden" type="radio" name="answer" value={`answer-${i}`} id={`answer-${i}`}/>
               <label className="artist__name" htmlFor={`answer-${i}`}>
-                <img className="artist__picture" src={it.picture} alt={it.artist}/>
-                {it.artist}
+                <img className="artist__picture" src={picture} alt={artist}/>
+                {artist}
               </label>
             </div>
           );

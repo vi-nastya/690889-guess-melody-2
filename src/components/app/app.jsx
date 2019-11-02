@@ -4,6 +4,7 @@ import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
 import GuessArtist from '../guess-artist/guess-artist.jsx';
 import GuessGenre from '../guess-genre/guess-genre.jsx';
 
+
 export default class App extends PureComponent {
   static getScreen(question, props, onUserAnswer) {
     if (question === -1) {
