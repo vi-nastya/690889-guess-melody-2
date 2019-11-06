@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import AudioPlayer from "../audio-player/audio-player.jsx";
 
 const GuessArtist = ({screenIndex, question, onAnswer}) => {
-  const {answers} = question;
+  const {answers, song} = question;
   return <section className="game game--artist">
     <header className="game__header">
       <a className="game__back" href="#">
@@ -35,10 +36,9 @@ const GuessArtist = ({screenIndex, question, onAnswer}) => {
       <h2 className="game__title">Кто исполняет эту песню?</h2>
       <div className="game__track">
         <div className="track">
-          <button className="track__button track__button--play" type="button"></button>
-          <div className="track__status">
-            <audio></audio>
-          </div>
+          <AudioPlayer
+            src={song.src}
+          />
         </div>
       </div>
 
