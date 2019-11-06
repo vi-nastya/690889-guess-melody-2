@@ -4,20 +4,20 @@ export const questions = [
     genre: `rock`,
     answers: [
       {
-        src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
+        src: `https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Chad_Crouch/Arps/Chad_Crouch_-_Elipsis.mp3`,
+        genre: `instrumental`,
+      },
+      {
+        src: `https://files.freemusicarchive.org/storage-freemusicarchive-org/music/none_given/Scott_Holmes/Scott_Holmes_-_Singles/Scott_Holmes_-_Driven_To_Success.mp3`,
         genre: `rock`,
       },
       {
-        src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
-        genre: `pop`,
-      },
-      {
-        src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
+        src: `https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Mr_Tachyon/Helping_Hands_ID_1202.mp3`,
         genre: `jazz`,
       },
       {
-        src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
-        genre: `rock`,
+        src: `https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Lobo_Loco/Vagabond/Lobo_Loco_-_05_-_The_First_Moment_ID_1016.mp3`,
+        genre: `folk`,
       },
     ],
   },
@@ -25,7 +25,7 @@ export const questions = [
     type: `artist`,
     song: {
       artist: `Jim Beam`,
-      src: `https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg`,
+      src: `https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Mr_Tachyon/Helping_Hands_ID_1202.mp3`,
     },
     answers: [
       {
