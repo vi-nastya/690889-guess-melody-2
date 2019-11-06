@@ -84,7 +84,10 @@ class GuessGenre extends PureComponent {
 GuessGenre.propTypes = {
   screenIndex: PropTypes.number.isRequired,
   question: PropTypes.shape({
-    answers: PropTypes.array.isRequired,
+    answers: PropTypes.arrayOf(PropTypes.shape({
+      src: PropTypes.string.isRequired,
+      genre: PropTypes.string.isRequired,
+    })).isRequired,
     genre: PropTypes.string.isRequired
   }),
   onAnswer: PropTypes.func.isRequired
