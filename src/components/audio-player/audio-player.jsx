@@ -5,32 +5,13 @@ class AudioPlayer extends PureComponent {
   constructor(props) {
     super(props);
 
-    const {isPlaying, src} = props;
+    this._audioRef = React.createRef();
 
-    this._audio = new Audio(src);
     this.state = {
-      progress: this._audio.currentTime,
+      progress: 0,
       isLoading: true,
-      isPlaying,
+      isPlaying: props.isPlaying,
     };
-
-    this._audio.oncanplaythrough = () => this.setState({
-      isLoading: false,
-    });
-
-    this._audio.onplay = () => {
-      this.setState({
-        isPlaying: true,
-      });
-    };
-
-    this._audio.onpause = () => this.setState({
-      isPlaying: false,
-    });
-
-    this._audio.ontimeupdate = () => this.setState({
-      progress: this._audio.currentTime
-    });
 
     this._onPlayButtonClick = this._onPlayButtonClick.bind(this);
   }
@@ -47,18 +28,55 @@ class AudioPlayer extends PureComponent {
           onClick={this._onPlayButtonClick}
         />
         <div className="track__status">
-          <audio />
+          <audio ref={this._audioRef}/>
         </div>
       </React.Fragment>
     );
   }
 
+  componentDidMount() {
+    const {src} = this.props;
+    const audio = this._audioRef.current;
+
+    audio.src = src;
+
+    audio.oncanplaythrough = () => this.setState({
+      isLoading: false,
+    });
+
+    audio.onplay = () => {
+      this.setState({
+        isPlaying: true,
+      });
+    };
+
+    audio.onpause = () => this.setState({
+      isPlaying: false,
+    });
+
+    audio.ontimeupdate = () => this.setState({
+      progress: audio.currentTime
+    });
+  }
+
   componentDidUpdate() {
+    const audio = this._audioRef.current;
+
     if (this.props.isPlaying) {
-      this._audio.play();
+      audio.play();
     } else {
-      this._audio.pause();
+      audio.pause();
     }
+  }
+
+  componentWillUnmount() {
+    const audio = this._audioRef.current;
+
+    audio.oncanplaythrough = null;
+    audio.onplay = null;
+    audio.onpause = null;
+    audio.ontimeupdate = null;
+    audio.src = ``;
   }
 
   _onPlayButtonClick() {
