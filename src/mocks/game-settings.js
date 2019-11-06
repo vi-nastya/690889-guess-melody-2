@@ -1,4 +1,4 @@
-export const gameSettings = {
-  time: 10,
-  numErrors: 3
+export const GameSettings = {
+  TIME: 10,
+  NUM_ERRORS: 3
 };
