@@ -38,34 +38,39 @@ class AudioPlayer extends PureComponent {
     const {src} = this.props;
     const audio = this._audioRef.current;
 
-    audio.src = src;
+    if (audio) {
 
-    audio.oncanplaythrough = () => this.setState({
-      isLoading: false,
-    });
+      audio.src = src;
 
-    audio.onplay = () => {
-      this.setState({
-        isPlaying: true,
+      audio.oncanplaythrough = () => this.setState({
+        isLoading: false,
       });
-    };
 
-    audio.onpause = () => this.setState({
-      isPlaying: false,
-    });
+      audio.onplay = () => {
+        this.setState({
+          isPlaying: true,
+        });
+      };
 
-    audio.ontimeupdate = () => this.setState({
-      progress: audio.currentTime
-    });
+      audio.onpause = () => this.setState({
+        isPlaying: false,
+      });
+
+      audio.ontimeupdate = () => this.setState({
+        progress: audio.currentTime
+      });
+    }
   }
 
   componentDidUpdate() {
     const audio = this._audioRef.current;
 
-    if (this.props.isPlaying) {
-      audio.play();
-    } else {
-      audio.pause();
+    if (audio) {
+      if (this.props.isPlaying) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
     }
   }
 
